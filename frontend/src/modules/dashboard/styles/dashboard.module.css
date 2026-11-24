@@ -1,0 +1,634 @@
+/* ========================================== */
+/* ESTILOS GLOBALES                           */
+/* ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.homeContenedor {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.mainLayout {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+}
+
+/* ========================================== */
+/* BARRA SUPERIOR Y BUSCADOR                  */
+/* ========================================== */
+.barraSuperior {
+  background: transparent;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100% - 260px); /* Ajusta según el ancho del sidebar */
+  z-index: 100;
+}
+
+.topBarRight {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Separación de 20px entre buscador y engranaje */
+}
+
+.searchWrapper {
+  width: 40vw; 
+  max-width: 600px;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2px solid #333;
+  border-radius: 30px;
+  padding: 6px 16px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.cuadroBusqueda {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #333;
+  font-size: 15px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  outline: none;
+}
+
+.searchIcon {
+  color: #333;
+  font-size: 22px;
+  cursor: default;
+}
+
+/* --- MENÚ ENGRANAJE --- */
+.settingsWrapper {
+  position: relative;
+}
+
+.settingsIcon {
+  font-size: 32px !important;
+  cursor: pointer;
+  color: #000;
+  transition: transform 0.2s ease;
+}
+
+.settingsIcon:hover {
+  transform: rotate(45deg);
+}
+
+.menuSettings {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  border: 1px solid #eee;
+}
+
+.opcionesMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.botonMenu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #333;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 15px;
+  transition: background 0.2s;
+  text-align: left;
+}
+
+.botonMenu:hover {
+  background-color: #f0f0f0;
+}
+
+.botonMenu span:first-child {
+  font-size: 22px;
+  color: #555;
+}
+
+.botonCerrar {
+  color: #d32f2f;
+}
+
+.botonCerrar span:first-child {
+  color: #d32f2f;
+}
+
+.divisionMenu {
+  height: 1px;
+  background-color: #eee;
+  margin: 6px 0;
+}
+
+/* ========================================== */
+/* BARRA LATERAL (SIDEBAR)                    */
+/* ========================================== */
+.barraLateral {
+  background: #ced3d4;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+  position: relative;
+  transition: width 0.1s ease;
+  border-right: 1px solid #ced3d4;
+}
+
+.resizeHandle {
+  position: absolute;
+  top: 0;
+  right: -4px;
+  width: 8px;
+  height: 100%;
+  cursor: ew-resize;
+  z-index: 100;
+}
+
+.resizeHandle:hover {
+  background: #ced3d4;
+}
+
+.addButtonWrapper {
+  padding: 0 10px 10px 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.addDeviceButtonSidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50px; /* Redondeo extremo */
+  cursor: pointer;
+  /*font-size: 15px;*/
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.addDeviceButtonSidebar:hover {
+  background-color: #388e3c;
+}
+
+.addDeviceButtonSidebar span {
+  font-size: 15px;
+}
+
+.navIcons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.botonNav {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  width: calc(100% - 16px);
+  margin: 4px 8px;
+  padding: 10px 14px;
+  color: #000000;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 15px;
+  border-radius: 50px;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.botonNav span:first-child {
+  font-size: 21px;
+  flex-shrink: 0;
+}
+
+.botonNav:hover,
+.botonNavActive {
+  background-color: #9ea5a460;
+}
+
+.textoNav {
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdownContainer {
+  width: 100%;
+}
+
+.dropdownMenu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: transparent;
+}
+
+.dropdownItem {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  width: calc(100% - 16px);
+  margin: 2px 8px;
+  padding: 8px 14px 8px 36px;
+  color: #000000;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-radius: 50px;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.dropdownItem span:first-child {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.dropdownItem .textoNav {
+  font-size: 13px;
+}
+
+.dropdownItem:hover,
+.dropdownItemActive {
+  background-color: #9ea5a460;
+}
+
+.sidebarFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 10px;
+  border-top: 1px solid #dcdcdc;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footerActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.toggleSidebarBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.toggleSidebarBtn:hover {
+  background-color: #b8bfc0;
+}
+
+.toggleSidebarBtn span {
+  font-size: 20px;
+}
+
+.refreshButtonIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.refreshButtonIcon:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+}
+
+.refreshButtonIcon:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refreshButtonIcon span {
+  font-size: 20px;
+}
+
+.lastUpdateBoxSidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lastUpdateLabel {
+  font-size: 10px;
+  color: #777;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.lastUpdateDate {
+  font-size: 12px;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* ========================================== */
+/* CONTENIDO PRINCIPAL (DASHBOARD)            */
+/* ========================================== */
+.contenido {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 90px; /* Espacio para no chocar con la barra flotante */
+}
+
+.dashboardHomeContainer {
+  padding: 30px;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.statsRow {
+  display: flex;
+  gap: 30px;
+  flex: 1;
+}
+
+.statCard {
+  padding: 20px;
+  min-width: 250px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.bgAzul {
+  background-color: #180e9c; 
+}
+
+.bgVerde {
+  background-color: #0c8610; 
+}
+
+.bgRojo {
+  background-color: #c01616; 
+}
+
+.statLabel {
+  font-size: 20px;
+  color: #ffffff; 
+  font-weight: 500;
+}
+
+.statNumber {
+  font-size: 80px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.statIcon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #ca1515;
+  font-size: 24px;
+}
+
+/* ========================================== */
+/* TABLAS Y COMPONENTES DE DATOS              */
+/* ========================================== */
+.tableContainer {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th {
+  background: #eee;
+  padding: 15px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.deviceType {
+  background-color: #c69200;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.statusBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.statusActive {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.statusInactive {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.infoIcon {
+  color: #666;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.infoIcon:hover {
+  color: #333;
+}
+
+.emptyTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 60px 0;
+  color: #999;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.loadingText {
+  font-size: 18px;
+  color: #666;
+}
+
+.searchInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #1565c0;
+}
+
+.searchInfo span:first-child {
+  font-size: 20px;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #c69200;
+}
+
+.selectedRow {
+  background-color: #fff8e1 !important;
+}
+
+.sidebarBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 15px 20px 15px;
+  margin-top: 5px;
+  border-bottom: 1px solid #b8bfc0; 
+  margin-bottom: 15px;
+}
+
+.logoExpanded {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.logoCollapsed {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  margin-left: 5px; 
+}
+
+.brandName {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* ========================================== */
+/* ANIMACIONES Y RESPONSIVO                   */
+/* ========================================== */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .barraSuperior {
+    flex-direction: column;
+    padding: 15px;
+  }
+  .statsRow {
+    flex-direction: column;
+  }
+  .barraLateral {
+    width: 60px;
+  }
+}

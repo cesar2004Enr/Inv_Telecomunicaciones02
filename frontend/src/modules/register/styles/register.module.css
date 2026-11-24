@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.fondo {
+  position: fixed; /* O min-height: 100vh */
+  inset: 0;
+  display: flex;
+  flex-direction: column; /* Apila el header y el contenedor de datos */
+  background: url("../../../assets/fondoTelecomunicaciones.png") center/cover no-repeat;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.titulo {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+
+.subtitulo {
+  font-size: 20px;
+  margin: 0 0 30px 0;
+}
+
+.barraSuperior {
+  background: #ffffff; 
+  color: #333333;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  width: 100%; 
+  box-sizing: border-box; 
+  font-weight: bold;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+  margin-bottom: 20px; 
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.headerLogo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.headerTitle {
+  font-size: 28px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  letter-spacing: 2px;
+  font-weight: bold;
+  color:#000000;
+}
+
+.contenedorDatos {
+  flex: 1; 
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  padding: 40px;           
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.formularioGeneral {
+  background-color: white;
+  padding: 40px 60px;
+  width: 100%;           
+  max-width: 900px;     
+  border-radius: 12px;   
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.contenedorPasos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.pasos {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  position: relative;
+  font-size: 30px;
+  background: white;
+  color: #ccc;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.pasos span {
+  position: absolute;
+  bottom: -30px;
+  font-size: 14px;
+  white-space: nowrap;
+  color: #888;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 17px;
+}
+
+.active,
+.pasosCompletados {
+  background: #c69200;
+  color: white;
+  border-color: #c69200;
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background: #ccc;
+  margin: 0 10px;
+}
+
+.lineActive {
+  background: #c69200;
+}
+
+.cuerpoFormulario {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.entredaDatos {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+
+.cuadroEntrada {
+  background: #e9e9e9;
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  width: 100%;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+.textoAyuda {
+  font-size: 17px;
+  color: #555;
+  margin-bottom: 8px;
+  display: block;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.btnRegresar,
+.btnContinuar,
+.btnConfirmar,
+.btnReenviar {
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 50px;
+  border: none;
+  cursor: pointer;
+  font-family:  Georgia, "Times New Roman", Times, serif;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+  background: #1900a7;
+  font-weight: bold;
+}
+
+.btnRegresar,
+.btnReenviar {
+  background: #686664;
+}
+
+.btnRegresar:hover,
+.btnContinuar:hover,
+.btnContinuar:hover,
+.btnReenviar:hover {
+  filter: brightness(85%);
+}
+
+.contenedorCaptcha {
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  margin: 20px auto;
+  font-size: larger;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.mostrarContraseñaEtiqueta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+}
+
+.cuerpoVerificacion {
+  text-align: center;
+}
+.ejemploCodigo {
+  background: #e9e9e9;
+  border: none;
+  padding: 12px;
+  width: 200px;
+  text-align: center;
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+.botonConfirmarMetodo {
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  background-color: #c69200;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.botonConfirmarMetodo:hover {
+  filter: brightness(85%);
+}
+
+.botonConfirmarMetodo:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .entredaDatos {
+    grid-template-columns: 1fr;
+  }
+  .pasos span {
+    display: none;
+  }
+  .botones {
+    flex-direction: column;
+  }
+}

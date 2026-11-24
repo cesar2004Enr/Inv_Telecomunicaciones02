@@ -1,0 +1,252 @@
+.landingContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family:  Georgia, serif;
+  background-color: #f8f9fa;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navBrand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navLogo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.navTitle {
+  font-size: 26px;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  color: #1c1c1c;
+  letter-spacing: 1px;
+}
+
+.navActions {
+  display: flex;
+  gap: 15px;
+}
+
+.botones {
+  padding: 10px 24px;
+  background-color: #1900a7;
+  color: #ffffff;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: Georgia, serif;
+  border:none;
+}
+
+.botones:hover {
+  filter: brightness(85%);
+}
+
+/* --- HERO SECTION --- */
+.heroSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.heroContent {
+  max-width: 1300px;
+}
+
+.heroTitle {
+  font-size: 48px;
+  color: #1c1c1c;
+  margin-bottom: 20px;
+  font-family: Georgia, serif;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.btnPrimaryLarge {
+  padding: 15px 40px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+  transition: transform 0.2s ease, background-color 0.2s;
+  font-family: Georgia, serif;
+}
+
+.btnPrimaryLarge:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+}
+
+/* --- FEATURES SECTION --- */
+.featuresSection {
+  padding: 80px 50px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.featuresTitle {
+  font-size: 32px;
+  font-family: Georgia, serif;
+  color: #1c1c1c;
+  margin-bottom: 50px;
+}
+
+.featuresGrid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+}
+
+.featureCard h3 {
+  font-size: 20px;
+  color: #333;
+  margin: 15px 0 10px 0;
+}
+
+.featureCard p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* --- FOOTER --- */
+.footer {
+  background-color: #1c1c1c;
+  color: #aaa;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.techSection {
+  padding: 80px 50px;
+  background-color: #f4f7f6;
+  text-align: center;
+}
+
+.techGrid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.techItem {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 220px;
+  border-bottom: 4px solid #1976d2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.techItem h4 {
+  margin: 15px 0 5px 0;
+  color: #333;
+  font-family: Georgia, serif;
+}
+
+.techItem p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* --- SECCIÓN DE SEGURIDAD --- */
+.securitySection {
+  padding: 80px 50px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.securityContent {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.securityList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.securityListItem {
+  display: flex;
+  gap: 15px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid #4caf50;
+}
+
+.securityListItem h4 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.securityListItem p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+  .securityList {
+    grid-template-columns: 1fr;
+  }
+}
+

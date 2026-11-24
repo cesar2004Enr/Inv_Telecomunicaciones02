@@ -1,0 +1,159 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Fiscalia {
+  id              String   @id @map("id_fiscalia") @db.Uuid
+  nombreEmpresa   String   @map("nombre_empresa") @db.VarChar(200)
+  telefonoEmpresa String   @map("telefono_empresa") @db.VarChar(20)
+  pais            String   @default("México") @db.VarChar(100)
+  estado          String   @db.VarChar(100)
+  ciudad          String   @db.VarChar(100)
+  codigoPostal    String   @map("codigo_postal") @db.VarChar(5)
+  calle           String   @db.VarChar(200)
+  numeroExterior  String   @map("numero_exterior") @db.VarChar(10)
+  numeroInterior  String?  @map("numero_interior") @db.VarChar(10)
+  colonia         String   @db.VarChar(200)
+
+  idCreacion      String   @map("id_creacion") @db.VarChar(50)
+  creacionEmpresa DateTime @default(now()) @map("creacion_empresa") @db.Timestamptz()
+
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  usuarios        DatosUsuario[]
+  dispositivos    Dispositivo[]
+
+  @@map("fiscalias")
+}
+
+model DatosUsuario {
+  id              String   @id @default(uuid()) @map("id_usuario") @db.Uuid
+  primerNombre    String   @map("primer_nombre") @db.VarChar(10)
+  segundoNombre   String?  @map("segundo_nombre") @db.VarChar(10)
+  apellidoPaterno String   @map("apellido_paterno") @db.VarChar(10)
+  apellidoMaterno String?  @map("apellido_materno") @db.VarChar(10)
+  telefonoPersonal String  @map("telefono_personal") @db.VarChar(10)
+
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  fiscaliaId      String?  @map("fiscalia_id") @db.Uuid
+  fiscalia        Fiscalia? @relation(fields: [fiscaliaId], references: [id], onDelete: SetNull)
+
+  correo          CorreoUsuario?
+  verificacion    VerificacionUsuario?
+  dispositivos    Dispositivo[]
+
+  archivos        Archivo[]
+
+  @@map("datos_usuarios")
+}
+
+model CorreoUsuario {
+  id              String   @id @default(uuid()) @map("id_correo") @db.Uuid
+  email           String   @unique @map("email_usuario") @db.VarChar(255)
+  password        String   @map("password_usuario") @db.VarChar(255)
+  fechaCreacion   DateTime @default(now()) @map("fecha_creacion") @db.Timestamptz()
+
+  datosUsuarioId  String   @unique @map("datos_usuario_id") @db.Uuid
+  datosUsuario    DatosUsuario @relation(fields: [datosUsuarioId], references: [id], onDelete: Cascade)
+
+  @@map("correos_usuarios")
+}
+
+model VerificacionUsuario {
+  id                String   @id @default(uuid()) @map("id_verificacion") @db.Uuid
+  codigoVerificacion String? @map("codigo_verificacion") @db.VarChar(6)
+  verified          Boolean  @default(false) @map("verificacion_usuario")
+
+  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamptz()
+
+  datosUsuarioId    String   @unique @map("datos_usuario_id") @db.Uuid
+  datosUsuario      DatosUsuario @relation(fields: [datosUsuarioId], references: [id], onDelete: Cascade)
+
+  @@map("verificaciones_usuarios")
+}
+
+model Marca {
+  id              String   @id @default(uuid()) @map("id_marca") @db.Uuid
+  nombre          String   @unique @map("marca_dispositivo") @db.VarChar(100)
+
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz()
+
+  dispositivos    Dispositivo[]
+
+  @@map("marcas")
+}
+
+model TipoDispositivo {
+  id              String   @id @default(uuid()) @map("id_tipo_dispositivo") @db.Uuid
+  nombre          String   @unique @map("tipo_dispositivo") @db.VarChar(50)
+
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz()
+
+  dispositivos    Dispositivo[]
+
+  @@map("tipos_dispositivos")
+}
+
+model Dispositivo {
+  id              String   @id @default(uuid()) @map("id_dispositivo") @db.Uuid
+  nombreEquipo    String   @map("nombre_equipo") @db.VarChar(50)
+  nombreInventario String? @map("nombre_inventario") @db.VarChar(100)  // ← NUEVO CAMPO
+  modelo          String   @db.VarChar(50)
+  numeroSerie     String   @map("numero_serie") @db.VarChar(50)
+  actividad       String   @default("Activo") @db.VarChar(20)
+  sitio           String?  @map("sitio") @db.VarChar(100)
+  fechaRegistro   DateTime @default(now()) @map("fecha_registro") @db.Timestamptz()
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion") @db.Timestamptz()
+
+  datosUsuarioId  String   @map("datos_usuario_id") @db.Uuid
+  datosUsuario    DatosUsuario @relation(fields: [datosUsuarioId], references: [id], onDelete: Cascade)
+
+  fiscaliaId      String?  @map("fiscalia_id") @db.Uuid
+  fiscalia        Fiscalia? @relation(fields: [fiscaliaId], references: [id], onDelete: SetNull)
+
+  marcaId         String   @map("marca_id") @db.Uuid
+  marca           Marca    @relation(fields: [marcaId], references: [id])
+
+  tipoDispositivoId String @map("tipo_dispositivo_id") @db.Uuid
+  tipoDispositivo   TipoDispositivo @relation(fields: [tipoDispositivoId], references: [id])
+
+  interfaces      Interfaz[]
+
+  @@map("dispositivos")
+}
+
+model Interfaz {
+  id              String   @id @default(uuid()) @map("id_interfaz") @db.Uuid
+  direccionIpv4   String   @map("direccion_ipv4") @db.VarChar(15)
+  mascaraSubred   String   @map("mascara_subred") @db.VarChar(15)
+  direccionMac    String   @map("direccion_mac") @db.VarChar(17)
+
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz()
+
+  dispositivoId   String   @map("dispositivo_id") @db.Uuid
+  dispositivo     Dispositivo @relation(fields: [dispositivoId], references: [id], onDelete: Cascade)
+
+  @@map("interfaces")
+}
+
+model Archivo {
+  id              String   @id @default(uuid()) @db.Uuid
+  nombre          String   @db.VarChar(150)
+  contenido       Json     // Aquí se guarda el snapshot de Univer
+  tamano          Int      // Tamaño en bytes
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  // Relación con el usuario
+  datosUsuarioId  String   @map("datos_usuario_id") @db.Uuid
+  datosUsuario    DatosUsuario @relation(fields: [datosUsuarioId], references: [id], onDelete: Cascade)
+
+  @@map("archivos")
+}

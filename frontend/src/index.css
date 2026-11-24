@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+body {
+  background-color: #f4f6f9;
+}
+
+.bold-cell { font-weight: bold !important; }
+.italic-cell { font-style: italic !important; }
+.underline-cell { text-decoration: underline !important; }
+.strike-cell { text-decoration: line-through !important; }
+
+.align-left { text-align: left !important; }
+.align-center { text-align: center !important; }
+.align-right { text-align: right !important; }
+
+.text-red { color: #d32f2f !important; }
+.text-blue { color: #1976d2 !important; }
+.bg-yellow { background-color: #fff59d !important; }
+.bg-green { background-color: #c8e6c9 !important; }

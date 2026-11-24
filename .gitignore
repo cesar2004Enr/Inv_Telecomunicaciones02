@@ -1,0 +1,39 @@
+# Dependencias
+node_modules/
+**/node_modules/
+
+# Variables de entorno y secretos (CRÍTICO)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Compilaciones y caché de Frontend (Vite)
+frontend/dist/
+frontend/dist-ssr/
+*.local
+
+# Logs y depuración
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Prisma y respaldos locales de base de datos
+backend/prisma/*.db
+backend/prisma/*.db-journal
+*.sql.bak
+*.dump
+
+# Archivos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
